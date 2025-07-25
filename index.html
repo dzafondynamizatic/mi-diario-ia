@@ -1,12 +1,27 @@
----
-layout: default
-title: Diario IA
----
-
-<h1>Bienvenido a tu Diario de IA</h1>
-<p>Este es tu espacio personal para reflexionar, escribir y dejar que la IA te ayude a expresarte.</p>
-<ul>
-  {% for post in site.posts %}
-    <li><a href="{{ post.url }}">{{ post.title }}</a> - {{ post.date | date: "%d %B %Y" }}</li>
-  {% endfor %}
-</ul>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Diario IA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>🧠 Mi Diario con IA</h1>
+        <p>Reflexiones, ideas y creatividad impulsadas por inteligencia artificial</p>
+    </header>
+    <main>
+        <section class="entry-card">
+            <h2>📅 25 Julio 2025</h2>
+            <p>Hoy empiezo mi diario con IA. ¡Qué emoción!</p>
+        </section>
+        <section class="entry-card">
+            <h2>📅 26 Julio 2025</h2>
+            <p>Explorando cómo la IA puede ayudarme a reflexionar mejor sobre mis días.</p>
+        </section>
+    </main>
+    <footer>
+        <p>Creado con ❤️ y IA · Inspirado en Microsoft 365 Copilot</p>
+    </footer>
+</body>
+</html>
