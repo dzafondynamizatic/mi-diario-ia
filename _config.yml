@@ -1,3 +1,12 @@
-title: Diario IA
-description: Un blog dinámico con Jekyll y estilo Copilot
+title: Diario IA Profesional
+description: Un blog profesional con IA y diseño Copilot
+baseurl: ""
+url: "https://tuusuario.github.io/diario-ia"
 theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-paginate
+  - jekyll-sitemap
+paginate: 5
+paginate_path: "/page:num/"

@@ -1,0 +1,30 @@
+---
+layout: default
+title: Buscar
+---
+
+<input type="text" id="searchBox" placeholder="Buscar...">
+<ul id="searchResults"></ul>
+
+<script>
+  const posts = [
+    {% for post in site.posts %}
+      { title: "{{ post.title }}", url: "{{ post.url }}" },
+    {% endfor %}
+  ];
+
+  document.getElementById('searchBox').addEventListener('input', function() {
+    const query = this.value.toLowerCase();
+    const results = posts.filter(p => p.title.toLowerCase().includes(query));
+    const list = document.getElementById('searchResults');
+    list.innerHTML = '';
+    results.forEach(p => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = p.url;
+      a.textContent = p.title;
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+  });
+</script>

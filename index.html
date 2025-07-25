@@ -1,26 +1,24 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Diario IA</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-  <header>
-    <h1>🧠 Diario IA</h1>
-    <p>Un blog generado con IA y estilo Copilot</p>
-  </header>
-  <main>
-    {% for post in site.posts %}
-    <article class="card">
-      <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-      <p class="date">{{ post.date | date: "%d %B %Y" }}</p>
+---
+layout: default
+title: Inicio
+---
+
+<h2>Entradas recientes</h2>
+<ul class="post-list">
+  {% for post in paginator.posts %}
+    <li>
+      <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
       <p>{{ post.excerpt }}</p>
-    </article>
-    {% endfor %}
-  </main>
-  <footer>
-    <p>Hecho con ❤️ y Jekyll</p>
-  </footer>
-</body>
-</html>
+      <small>{{ post.date | date: "%d %B %Y" }}</small>
+    </li>
+  {% endfor %}
+</ul>
+
+<div class="pagination">
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | relative_url }}">&laquo; Anterior</a>
+  {% endif %}
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | relative_url }}">Siguiente &raquo;</a>
+  {% endif %}
+</div>
