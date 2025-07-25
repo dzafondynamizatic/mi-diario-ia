@@ -3,11 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>{{ page.title }}</title>
-  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
-  <header><h1><a href="/">Diario IA</a></h1></header>
-  <main>{{ content }}</main>
-  <footer><p>Creado con ❤️ y IA</p></footer>
+  <header>
+    <h1><a href="/">🧠 Diario IA</a></h1>
+    <p>{{ site.description }}</p>
+  </header>
+  <main>
+    {{ content }}
+  </main>
+  <footer>
+    <p>Hecho con ❤️ y Jekyll</p>
+  </footer>
 </body>
 </html>

@@ -1,0 +1,7 @@
+title: Diario IA
+description: Un blog dinámico generado con Jekyll e IA
+baseurl: ""
+url: "https://tuusuario.github.io"
+theme: minima
+plugins:
+  - jekyll-feed
