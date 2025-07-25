@@ -14,23 +14,29 @@ jobs:
   generar:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Crear entrada
-        run: |
-          mkdir -p _posts
-          fecha=$(date +'%Y-%m-%d')
-          nombre="${fecha}-${{ github.event.inputs.titulo | slugify }}.md"
-          echo "---" > _posts/$nombre
-          echo "layout: default" >> _posts/$nombre
-          echo "title: \"${{ github.event.inputs.titulo }}\"" >> _posts/$nombre
-          echo "date: $fecha" >> _posts/$nombre
-          echo "categories: [ia]" >> _posts/$nombre
-          echo "---" >> _posts/$nombre
-          echo "${{ github.event.inputs.contenido }}" >> _posts/$nombre
-      - name: Commit y push
+      - name: Clonar repositorio
+        uses: actions/checkout@v3
+
+      - name: Configurar Git
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
+
+      - name: Crear entrada
+        run: |
+          FECHA=$(date +'%Y-%m-%d')
+          SLUG=$(echo "${{ github.event.inputs.titulo }}" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g' | tr -cd '[:alnum:]-')
+          ARCHIVO="_posts/$FECHA-$SLUG.md"
+          echo "---" > $ARCHIVO
+          echo "layout: post" >> $ARCHIVO
+          echo "title: \"${{ github.event.inputs.titulo }}\"" >> $ARCHIVO
+          echo "date: $FECHA" >> $ARCHIVO
+          echo "categories: [IA]" >> $ARCHIVO
+          echo "---" >> $ARCHIVO
+          echo "${{ github.event.inputs.contenido }}" >> $ARCHIVO
+
+      - name: Subir cambios
+        run: |
           git add _posts/
-          git commit -m "Nueva entrada generada por IA"
+          git commit -m "Nueva entrada: ${{ github.event.inputs.titulo }}"
           git push
