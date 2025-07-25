@@ -1,24 +1,39 @@
----
-layout: default
-title: Inicio
----
-
-<h2>Entradas recientes</h2>
-<ul class="post-list">
-  {% for post in paginator.posts %}
-    <li>
-      <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-      <p>{{ post.excerpt }}</p>
-      <small>{{ post.date | date: "%d %B %Y" }}</small>
-    </li>
-  {% endfor %}
-</ul>
-
-<div class="pagination">
-  {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path | relative_url }}">&laquo; Anterior</a>
-  {% endif %}
-  {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path | relative_url }}">Siguiente &raquo;</a>
-  {% endif %}
-</div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Diario IA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="hero">
+    <img src="assets/img/portada.jpg" alt="Portada Diario IA" class="hero-image">
+    <div class="hero-text">
+      <h1>Bienvenido a mi Diario IA</h1>
+      <p>Explora pensamientos, ideas y reflexiones generadas con inteligencia artificial.</p>
+      <a href="#entradas" class="btn">Ver entradas recientes</a>
+    </div>
+  </header>
+  <main id="entradas">
+    <h2>Entradas recientes</h2>
+    <ul class="post-list">
+      {% for post in paginator.posts %}
+      <li class="post-card">
+        <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+        <p>{{ post.excerpt }}</p>
+        <small>{{ post.date | date: "%d %B %Y" }}</small>
+      </li>
+      {% endfor %}
+    </ul>
+    <div class="pagination">
+      {% if paginator.previous_page %}
+        <a href="{{ paginator.previous_page_path }}" class="btn">Anterior</a>
+      {% endif %}
+      {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path }}" class="btn">Siguiente</a>
+      {% endif %}
+    </div>
+  </main>
+</body>
+</html>

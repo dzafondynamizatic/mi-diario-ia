@@ -14,29 +14,26 @@ jobs:
   generar:
     runs-on: ubuntu-latest
     steps:
-      - name: Clonar repositorio
+      - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Configurar Git
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
 
       - name: Crear entrada
         run: |
           FECHA=$(date +'%Y-%m-%d')
-          SLUG=$(echo "${{ github.event.inputs.titulo }}" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g' | tr -cd '[:alnum:]-')
-          ARCHIVO="_posts/$FECHA-$SLUG.md"
+          NOMBRE="${{ github.event.inputs.titulo }}"
+          ARCHIVO="_posts/$FECHA-${NOMBRE// /-}.md"
           echo "---" > $ARCHIVO
           echo "layout: post" >> $ARCHIVO
-          echo "title: \"${{ github.event.inputs.titulo }}\"" >> $ARCHIVO
+          echo "title: \"${NOMBRE}\"" >> $ARCHIVO
           echo "date: $FECHA" >> $ARCHIVO
-          echo "categories: [IA]" >> $ARCHIVO
+          echo "categories: [ia]" >> $ARCHIVO
           echo "---" >> $ARCHIVO
           echo "${{ github.event.inputs.contenido }}" >> $ARCHIVO
 
-      - name: Subir cambios
+      - name: Commit y push
         run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
           git add _posts/
-          git commit -m "Nueva entrada: ${{ github.event.inputs.titulo }}"
+          git commit -m "Nueva entrada generada por IA"
           git push
