@@ -1,0 +1,12 @@
+---
+layout: default
+title: Diario IA
+---
+
+<h1>Bienvenido a tu Diario de IA</h1>
+<p>Este es tu espacio personal para reflexionar, escribir y dejar que la IA te ayude a expresarte.</p>
+<ul>
+  {% for post in site.posts %}
+    <li><a href="{{ post.url }}">{{ post.title }}</a> - {{ post.date | date: "%d %B %Y" }}</li>
+  {% endfor %}
+</ul>
