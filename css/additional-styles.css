@@ -1,4 +1,41 @@
 /* Estilos adicionales para artículos relacionados y mejoras */
+/* Microsoft 365 Copilot inspired styles */
+
+/* Efectos de glow para elementos interactivos */
+.copilot-glow {
+    box-shadow: 0 0 20/* Notificaciones con colores de Microsoft 365 Copilot */
+.notification {
+    font-weight: 500;
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(10px);
+}
+
+.notification.error {
+    background: #d83b01 !important;
+    box-shadow: 0 4px 20px rgba(216, 59, 1, 0.3);
+}
+
+.notification.success {
+    background: var(--copilot-green) !important;
+    box-shadow: 0 4px 20px rgba(16, 124, 16, 0.3);
+}
+
+.notification.warning {
+    background: var(--accent-orange) !important;
+    box-shadow: 0 4px 20px rgba(255, 140, 0, 0.3);
+}91, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.copilot-glow:hover {
+    box-shadow: 0 0 30px rgba(139, 95, 191, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Gradiente sutil de fondo */
+.copilot-bg {
+    background: linear-gradient(135deg, rgba(139, 95, 191, 0.05) 0%, rgba(0, 120, 212, 0.05) 100%);
+}
 
 /* Artículos relacionados */
 .related-articles {
@@ -12,6 +49,10 @@
     margin-bottom: 1.5rem;
     color: var(--text-primary);
     text-align: center;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .related-articles-grid {
@@ -27,6 +68,7 @@
     cursor: pointer;
     transition: var(--transition);
     text-align: center;
+    border: 1px solid var(--border-color);
 }
 
 .related-article:hover {
@@ -189,15 +231,15 @@
 }
 
 .notification.success {
-    background: var(--accent-color) !important;
-    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+    background: var(--copilot-green) !important;
+    box-shadow: 0 4px 20px rgba(16, 124, 16, 0.3);
 }
 
 .notification.warning {
     background: var(--accent-orange) !important;
 }
 
-/* Scroll to top button con estilo Copilot */
+/* Scroll to top button con estilo Microsoft 365 Copilot */
 .scroll-to-top {
     position: fixed;
     bottom: 20px;
@@ -205,7 +247,7 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: var(--gradient-alt);
+    background: var(--gradient);
     color: white;
     border: none;
     cursor: pointer;
@@ -213,7 +255,7 @@
     visibility: hidden;
     transition: var(--transition);
     z-index: 1000;
-    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+    box-shadow: 0 4px 20px rgba(139, 95, 191, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;

@@ -6,25 +6,29 @@
 }
 
 :root {
-    --primary-color: #8b5cf6;
-    --primary-dark: #7c3aed;
-    --secondary-color: #06b6d4;
-    --accent-color: #10b981;
-    --accent-orange: #f97316;
-    --text-primary: #0f172a;
-    --text-secondary: #475569;
-    --text-light: #64748b;
+    --primary-color: #8b5fbf;
+    --primary-dark: #6b46c1;
+    --secondary-color: #0078d4;
+    --accent-color: #00bcf2;
+    --accent-orange: #ff8c00;
+    --copilot-purple: #8b5fbf;
+    --copilot-blue: #0078d4;
+    --copilot-light-blue: #00bcf2;
+    --copilot-green: #107c10;
+    --text-primary: #323130;
+    --text-secondary: #605e5c;
+    --text-light: #8a8886;
     --background: #ffffff;
-    --background-secondary: #f8fafc;
-    --background-dark: #0f172a;
+    --background-secondary: #faf9f8;
+    --background-dark: #292827;
     --background-card: #ffffff;
-    --border-color: #e2e8f0;
-    --shadow: 0 4px 6px -1px rgba(139, 92, 246, 0.1);
-    --shadow-lg: 0 20px 25px -5px rgba(139, 92, 246, 0.15);
-    --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    --gradient-alt: linear-gradient(135deg, #8b5cf6, #06b6d4, #10b981);
-    --border-radius: 12px;
-    --transition: all 0.3s ease;
+    --border-color: #edebe9;
+    --shadow: 0 4px 8px rgba(139, 95, 191, 0.12);
+    --shadow-lg: 0 16px 32px rgba(139, 95, 191, 0.16);
+    --gradient: linear-gradient(135deg, #8b5fbf, #0078d4);
+    --gradient-alt: linear-gradient(135deg, #8b5fbf, #0078d4, #00bcf2);
+    --border-radius: 8px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -65,10 +69,11 @@ body {
 .logo h1 {
     font-size: 1.5rem;
     font-weight: 700;
-    background: var(--gradient-alt);
+    background: var(--gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    filter: drop-shadow(0 2px 4px rgba(139, 95, 191, 0.2));
 }
 
 .nav-menu {
@@ -175,13 +180,13 @@ body {
     font-weight: 600;
     transition: var(--transition);
     animation: fadeInUp 1s ease-out 0.4s both;
-    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+    box-shadow: 0 4px 20px rgba(139, 95, 191, 0.3);
     border: 2px solid transparent;
 }
 
 .cta-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+    box-shadow: 0 8px 30px rgba(139, 95, 191, 0.4);
     background: var(--primary-color);
     color: white;
     border: 2px solid white;
@@ -277,12 +282,12 @@ body {
     color: white;
     cursor: pointer;
     transition: var(--transition);
-    box-shadow: 0 2px 10px rgba(139, 92, 246, 0.3);
+    box-shadow: 0 2px 10px rgba(139, 95, 191, 0.3);
 }
 
 .search-bar button:hover {
     background: var(--primary-dark);
-    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+    box-shadow: 0 4px 15px rgba(139, 95, 191, 0.4);
 }
 
 /* Filter Tags */
@@ -378,11 +383,11 @@ body {
 
 .article-tag {
     padding: 4px 8px;
-    background: rgba(16, 185, 129, 0.1);
+    background: rgba(16, 124, 16, 0.1);
     border-radius: 15px;
     font-size: 0.8rem;
-    color: var(--accent-color);
-    border: 1px solid rgba(16, 185, 129, 0.2);
+    color: var(--copilot-green);
+    border: 1px solid rgba(16, 124, 16, 0.2);
 }
 
 /* Load More Button */
@@ -440,12 +445,12 @@ body {
 
 .skill-tag {
     padding: 6px 12px;
-    background: var(--gradient-alt);
+    background: var(--gradient);
     color: white;
     border-radius: 20px;
     font-size: 0.9rem;
     font-weight: 500;
-    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
+    box-shadow: 0 2px 8px rgba(139, 95, 191, 0.3);
 }
 
 .about-image {
@@ -455,7 +460,7 @@ body {
 .image-placeholder {
     width: 250px;
     height: 250px;
-    background: var(--gradient-alt);
+    background: var(--gradient);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -463,7 +468,7 @@ body {
     margin: 0 auto;
     font-size: 4rem;
     color: white;
-    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.3);
+    box-shadow: 0 8px 30px rgba(139, 95, 191, 0.3);
 }
 
 /* Contact Section */
