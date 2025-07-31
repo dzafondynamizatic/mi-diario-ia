@@ -1,39 +1,170 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Diario IA</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Diario de IA - Explorando el Futuro de la Inteligencia Artificial</title>
+    <meta name="description" content="Un blog personal sobre inteligencia artificial, aprendizaje automático y tecnología">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/additional-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
-  <header class="hero">
-    <img src="assets/img/portada.jpg" alt="Portada Diario IA" class="hero-image">
-    <div class="hero-text">
-      <h1>Bienvenido a mi Diario IA</h1>
-      <p>Explora pensamientos, ideas y reflexiones generadas con inteligencia artificial.</p>
-      <a href="#entradas" class="btn">Ver entradas recientes</a>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <h1>🤖 Mi Diario de IA</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#inicio" class="nav-link">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#articulos" class="nav-link">Artículos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#sobre-mi" class="nav-link">Sobre Mí</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contacto" class="nav-link">Contacto</a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="inicio" class="hero">
+            <div class="hero-content">
+                <h2 class="hero-title">Explorando el Futuro de la IA</h2>
+                <p class="hero-subtitle">
+                    Reflexiones, experimentos y descubrimientos en el fascinante mundo 
+                    de la inteligencia artificial y el aprendizaje automático.
+                </p>
+                <a href="#articulos" class="cta-button">Leer Artículos</a>
+            </div>
+            <div class="hero-animation">
+                <div class="floating-icons">
+                    <span class="icon">🧠</span>
+                    <span class="icon">💡</span>
+                    <span class="icon">⚡</span>
+                    <span class="icon">🔬</span>
+                    <span class="icon">📊</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Posts Section -->
+        <section id="articulos" class="articles-section">
+            <div class="container">
+                <h2 class="section-title">Últimos Artículos</h2>
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Buscar artículos..." />
+                    <button id="searchBtn">🔍</button>
+                </div>
+                
+                <div class="filter-tags">
+                    <button class="tag-filter active" data-tag="all">Todos</button>
+                    <button class="tag-filter" data-tag="machine-learning">Machine Learning</button>
+                    <button class="tag-filter" data-tag="deep-learning">Deep Learning</button>
+                    <button class="tag-filter" data-tag="nlp">NLP</button>
+                    <button class="tag-filter" data-tag="computer-vision">Computer Vision</button>
+                    <button class="tag-filter" data-tag="herramientas">Herramientas</button>
+                </div>
+
+                <div id="articlesContainer" class="articles-grid">
+                    <!-- Los artículos se cargarán dinámicamente con JavaScript -->
+                </div>
+
+                <div class="load-more-container">
+                    <button id="loadMoreBtn" class="load-more-btn">Cargar Más Artículos</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="sobre-mi" class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>Sobre Mí</h2>
+                        <p>
+                            Soy un apasionado de la inteligencia artificial y la tecnología. 
+                            En este blog comparto mis experiencias, aprendizajes y reflexiones 
+                            sobre el impacto de la IA en nuestro mundo.
+                        </p>
+                        <p>
+                            Mi objetivo es hacer que los conceptos complejos de IA sean 
+                            accesibles para todos, desde principiantes hasta expertos en el campo.
+                        </p>
+                        <div class="skills">
+                            <span class="skill-tag">Machine Learning</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">TensorFlow</span>
+                            <span class="skill-tag">PyTorch</span>
+                            <span class="skill-tag">Data Science</span>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <div class="image-placeholder">
+                            <span class="placeholder-icon">👨‍💻</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contacto" class="contact-section">
+            <div class="container">
+                <h2>Conectemos</h2>
+                <p>¿Tienes preguntas o quieres colaborar? ¡Me encantaría escucharte!</p>
+                <div class="contact-links">
+                    <a href="https://github.com/dzafondynamizatic" class="contact-link" target="_blank">
+                        <span class="icon">📧</span>
+                        GitHub
+                    </a>
+                    <a href="mailto:tu-email@ejemplo.com" class="contact-link">
+                        <span class="icon">💼</span>
+                        Email
+                    </a>
+                    <a href="https://linkedin.com/in/tu-perfil" class="contact-link" target="_blank">
+                        <span class="icon">🔗</span>
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Mi Diario de IA. Todos los derechos reservados.</p>
+            <p>Hecho con ❤️ y mucho ☕</p>
+        </div>
+    </footer>
+
+    <!-- Article Modal -->
+    <div id="articleModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <article id="modalArticle">
+                <!-- El contenido del artículo se cargará aquí -->
+            </article>
+        </div>
     </div>
-  </header>
-  <main id="entradas">
-    <h2>Entradas recientes</h2>
-    <ul class="post-list">
-      {% for post in paginator.posts %}
-      <li class="post-card">
-        <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
-        <p>{{ post.excerpt }}</p>
-        <small>{{ post.date | date: "%d %B %Y" }}</small>
-      </li>
-      {% endfor %}
-    </ul>
-    <div class="pagination">
-      {% if paginator.previous_page %}
-        <a href="{{ paginator.previous_page_path }}" class="btn">Anterior</a>
-      {% endif %}
-      {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path }}" class="btn">Siguiente</a>
-      {% endif %}
-    </div>
-  </main>
+
+    <script src="js/articles-data.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

@@ -1,10 +1,22 @@
-title: Diario IA
-description: Un blog profesional con IA y Jekyll
-baseurl: ""
-url: "https://tuusuario.github.io/diario-ia"
-theme: minima
+# Configuración para GitHub Pages
+theme: jekyll-theme-minimal
+title: Mi Diario de IA
+description: Un blog personal sobre inteligencia artificial, machine learning y tecnología
+show_downloads: false
+google_analytics: # Añade tu código de Google Analytics aquí
+
+# Configuración SEO
+lang: es
+author: Tu Nombre
+
+# Plugins recomendados (se instalan automáticamente en GitHub Pages)
 plugins:
-  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-feed
   - jekyll-seo-tag
-paginate: 5
-paginate_path: "/page:num/"
+
+# Exclusiones
+exclude:
+  - README.md
+  - LICENSE
+  - .gitignore

@@ -1,0 +1,327 @@
+/* Estilos adicionales para artículos relacionados y mejoras */
+
+/* Artículos relacionados */
+.related-articles {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--border-color);
+}
+
+.related-articles h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.related-articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.related-article {
+    background: var(--background-secondary);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+}
+
+.related-article:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+.related-article-image {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.related-article h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.related-article p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+/* Mensaje de sin resultados */
+.no-results {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-secondary);
+}
+
+.no-results p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+/* Mejoras para el modal */
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* Botones de compartir (para futuras implementaciones) */
+.share-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    justify-content: center;
+}
+
+.share-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: var(--transition);
+    text-decoration: none;
+    color: white;
+}
+
+.share-btn.twitter {
+    background: #1da1f2;
+}
+
+.share-btn.facebook {
+    background: #4267b2;
+}
+
+.share-btn.linkedin {
+    background: #0077b5;
+}
+
+.share-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+/* Modo oscuro (para futura implementación) */
+.dark-mode {
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --text-light: #9ca3af;
+    --background: #111827;
+    --background-secondary: #1f2937;
+    --background-dark: #0f172a;
+    --border-color: #374151;
+}
+
+.dark-mode .header {
+    background: rgba(17, 24, 39, 0.95);
+}
+
+.dark-mode .article-card,
+.dark-mode .modal-content,
+.dark-mode .contact-link,
+.dark-mode .search-bar input {
+    background: var(--background-secondary);
+    color: var(--text-primary);
+}
+
+.dark-mode .tag-filter {
+    background: var(--background-secondary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+/* Toggle para modo oscuro */
+.dark-mode-toggle {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--transition);
+    z-index: 1000;
+    box-shadow: var(--shadow);
+}
+
+.dark-mode-toggle:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Notificaciones */
+.notification {
+    font-weight: 500;
+    border-radius: var(--border-radius);
+}
+
+.notification.error {
+    background: #ef4444 !important;
+}
+
+.notification.success {
+    background: #10b981 !important;
+}
+
+.notification.warning {
+    background: #f59e0b !important;
+}
+
+/* Scroll to top button */
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    z-index: 1000;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-to-top:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Mejoras de accesibilidad */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Focus styles para mejor accesibilidad */
+.nav-link:focus,
+.tag-filter:focus,
+.cta-button:focus,
+.load-more-btn:focus,
+.contact-link:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    .header,
+    .hamburger,
+    .search-bar,
+    .filter-tags,
+    .load-more-container,
+    .contact-section,
+    .footer,
+    .modal {
+        display: none !important;
+    }
+    
+    .hero {
+        min-height: auto;
+        padding: 2rem 0;
+    }
+    
+    .articles-section {
+        padding: 1rem 0;
+    }
+    
+    .article-card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        break-inside: avoid;
+    }
+}
+
+/* Animaciones de carga */
+@keyframes shimmer {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: calc(200px + 100%) 0;
+    }
+}
+
+.loading-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200px 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+/* Mejoras para SEO y rendimiento */
+.article-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Estados de hover mejorados */
+.article-card:hover .article-title {
+    color: var(--primary-color);
+}
+
+.article-card:hover .article-image {
+    transform: scale(1.05);
+}
+
+.article-image {
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+/* Breadcrumbs (para futuras implementaciones) */
+.breadcrumbs {
+    padding: 1rem 0;
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.breadcrumbs a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline;
+}
