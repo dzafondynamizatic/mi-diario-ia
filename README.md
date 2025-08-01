@@ -1,17 +1,18 @@
 # Mi Diario de IA 🤖
 
-Un blog personal minimalista dedicado a documentar mi viaje explorando el fascinante mundo de la inteligencia artificial, machine learning y tecnologías emergentes.
+Un blog personal minimalista dedicado a documentar mis experiencias explorando herramientas de inteligencia artificial en el ámbito empresarial, especialmente con Microsoft Dynamics 365 Business Central y tecnologías relacionadas.
 
 ## 🚀 Características
 
 - **Diseño Minimalista**: Enfocado completamente en el contenido de los artículos
 - **Colores Microsoft 365 Copilot**: Paleta inspirada en los colores oficiales de Copilot
 - **Búsqueda Inteligente**: Encuentra artículos por título, contenido o tags
-- **Filtros por Categorías**: ML, DL, NLP, Computer Vision, Tools, Ética
+- **Filtros por Categorías**: Business Central, Dynamics 365, IA, Demos, ERP
 - **Modal de Lectura**: Experiencia de lectura inmersiva sin distracciones
 - **Artículos Relacionados**: Sugerencias basadas en tags similares
 - **Responsive Design**: Optimizado para todos los dispositivos
 - **Navegación Simplificada**: Sin secciones innecesarias, directo a los artículos
+- **Lista Vertical**: Los artículos se muestran uno debajo del otro para mejor lectura
 
 ## 🛠️ Tecnologías Utilizadas
 
@@ -24,25 +25,26 @@ Un blog personal minimalista dedicado a documentar mi viaje explorando el fascin
 
 ```
 mi-diario-ia/
-├── index.html              # Página principal
+├── index.html                 # Página principal
 ├── css/
-│   └── styles.css          # Estilos principales
+│   ├── styles.css            # Estilos principales  
+│   └── additional-styles.css # Estilos adicionales
 ├── js/
-│   ├── script.js          # Lógica principal
-│   └── articles-data.js   # Datos de artículos
-├── images/                 # Imágenes y assets
-├── favicon.png            # Icono del sitio
-└── README.md              # Este archivo
+│   ├── script.js            # Lógica principal
+│   └── articles-data.js     # Datos de artículos
+├── images/                  # Imágenes y assets
+├── favicon.png             # Icono del sitio
+└── README.md               # Este archivo
 ```
 
 ## 🎯 Temas Cubiertos
 
-- **Machine Learning**: Conceptos fundamentales y algoritmos
-- **Deep Learning**: Redes neuronales y frameworks (TensorFlow, PyTorch)
-- **NLP**: Procesamiento de lenguaje natural y análisis de sentimientos
-- **Computer Vision**: Detección de objetos y reconocimiento de imágenes
-- **Herramientas de IA**: Reviews y comparativas de herramientas
-- **Ética en IA**: Reflexiones sobre el desarrollo responsable
+- **Microsoft Dynamics 365**: Business Central y sus nuevas funcionalidades de IA
+- **Agentes de IA**: Automatización de procesos empresariales
+- **Cuentas por Pagar**: Gestión inteligente de facturas y proveedores
+- **Demos y Presentaciones**: Preparación de demostraciones técnicas
+- **ERP Moderno**: Evolución de los sistemas empresariales hacia la inteligencia artificial
+- **Integración de IA**: Implementación práctica en entornos corporativos
 
 ## 🚀 Cómo Usar
 
@@ -66,17 +68,17 @@ Para añadir un nuevo artículo, edita el archivo `js/articles-data.js` y añade
 
 ```javascript
 {
-    id: 7, // ID único
-    title: "Título del Artículo",
-    excerpt: "Resumen breve del artículo...",
+    id: 2, // ID único
+    title: "Explorando Nuevas Funcionalidades en Business Central",
+    excerpt: "Mi experiencia probando las últimas actualizaciones...",
     content: `
-        <h2>Subtítulo</h2>
+        <h2>Introducción</h2>
         <p>Contenido en HTML...</p>
     `,
-    image: "🔬", // Emoji o icono
-    date: "2025-02-01",
+    image: "�", // Emoji o icono
+    date: "2025-08-01",
     author: "Tu Nombre",
-    tags: ["tag1", "tag2"],
+    tags: ["business-central", "dynamics-365", "ai"],
     readTime: "X min"
 }
 ```
