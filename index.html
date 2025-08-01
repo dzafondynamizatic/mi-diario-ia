@@ -22,16 +22,13 @@
                 </div>
                 <ul class="nav-menu">
                     <li class="nav-item">
-                        <a href="#inicio" class="nav-link">Inicio</a>
+                        <a href="#" class="nav-link">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#articulos" class="nav-link">Artículos</a>
+                        <a href="https://github.com/dzafondynamizatic" class="nav-link" target="_blank">GitHub</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#sobre-mi" class="nav-link">Sobre Mí</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#contacto" class="nav-link">Contacto</a>
+                        <a href="mailto:tu-email@ejemplo.com" class="nav-link">Contacto</a>
                     </li>
                 </ul>
                 <div class="hamburger">
@@ -44,45 +41,36 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section id="inicio" class="hero">
-            <div class="hero-content">
-                <h2 class="hero-title">Explorando el Futuro de la IA</h2>
-                <p class="hero-subtitle">
-                    Reflexiones, experimentos y descubrimientos en el fascinante mundo 
-                    de la inteligencia artificial y el aprendizaje automático.
-                </p>
-                <a href="#articulos" class="cta-button">Leer Artículos</a>
-            </div>
-            <div class="hero-animation">
-                <div class="floating-icons">
-                    <span class="icon">🧠</span>
-                    <span class="icon">💡</span>
-                    <span class="icon">⚡</span>
-                    <span class="icon">🔬</span>
-                    <span class="icon">📊</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Featured Posts Section -->
-        <section id="articulos" class="articles-section">
+        <!-- Header con título y controles -->
+        <div class="blog-header">
             <div class="container">
-                <h2 class="section-title">Últimos Artículos</h2>
-                <div class="search-bar">
-                    <input type="text" id="searchInput" placeholder="Buscar artículos..." />
-                    <button id="searchBtn">🔍</button>
+                <div class="blog-intro">
+                    <h1 class="blog-title">Mi Diario de IA</h1>
+                    <p class="blog-subtitle">Explorando el futuro de la inteligencia artificial</p>
                 </div>
                 
-                <div class="filter-tags">
-                    <button class="tag-filter active" data-tag="all">Todos</button>
-                    <button class="tag-filter" data-tag="machine-learning">Machine Learning</button>
-                    <button class="tag-filter" data-tag="deep-learning">Deep Learning</button>
-                    <button class="tag-filter" data-tag="nlp">NLP</button>
-                    <button class="tag-filter" data-tag="computer-vision">Computer Vision</button>
-                    <button class="tag-filter" data-tag="herramientas">Herramientas</button>
+                <div class="blog-controls">
+                    <div class="search-bar">
+                        <input type="text" id="searchInput" placeholder="Buscar artículos..." />
+                        <button id="searchBtn">🔍</button>
+                    </div>
+                    
+                    <div class="filter-tags">
+                        <button class="tag-filter active" data-tag="all">Todos</button>
+                        <button class="tag-filter" data-tag="machine-learning">ML</button>
+                        <button class="tag-filter" data-tag="deep-learning">DL</button>
+                        <button class="tag-filter" data-tag="nlp">NLP</button>
+                        <button class="tag-filter" data-tag="computer-vision">CV</button>
+                        <button class="tag-filter" data-tag="herramientas">Tools</button>
+                        <button class="tag-filter" data-tag="etica">Ética</button>
+                    </div>
                 </div>
+            </div>
+        </div>
 
+        <!-- Artículos directamente -->
+        <div class="articles-container">
+            <div class="container">
                 <div id="articlesContainer" class="articles-grid">
                     <!-- Los artículos se cargarán dinámicamente con JavaScript -->
                 </div>
@@ -91,67 +79,19 @@
                     <button id="loadMoreBtn" class="load-more-btn">Cargar Más Artículos</button>
                 </div>
             </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="sobre-mi" class="about-section">
-            <div class="container">
-                <div class="about-content">
-                    <div class="about-text">
-                        <h2>Sobre Mí</h2>
-                        <p>
-                            Soy un apasionado de la inteligencia artificial y la tecnología. 
-                            En este blog comparto mis experiencias, aprendizajes y reflexiones 
-                            sobre el impacto de la IA en nuestro mundo.
-                        </p>
-                        <p>
-                            Mi objetivo es hacer que los conceptos complejos de IA sean 
-                            accesibles para todos, desde principiantes hasta expertos en el campo.
-                        </p>
-                        <div class="skills">
-                            <span class="skill-tag">Machine Learning</span>
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">TensorFlow</span>
-                            <span class="skill-tag">PyTorch</span>
-                            <span class="skill-tag">Data Science</span>
-                        </div>
-                    </div>
-                    <div class="about-image">
-                        <div class="image-placeholder">
-                            <span class="placeholder-icon">👨‍💻</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contacto" class="contact-section">
-            <div class="container">
-                <h2>Conectemos</h2>
-                <p>¿Tienes preguntas o quieres colaborar? ¡Me encantaría escucharte!</p>
-                <div class="contact-links">
-                    <a href="https://github.com/dzafondynamizatic" class="contact-link" target="_blank">
-                        <span class="icon">📧</span>
-                        GitHub
-                    </a>
-                    <a href="mailto:tu-email@ejemplo.com" class="contact-link">
-                        <span class="icon">💼</span>
-                        Email
-                    </a>
-                    <a href="https://linkedin.com/in/tu-perfil" class="contact-link" target="_blank">
-                        <span class="icon">🔗</span>
-                        LinkedIn
-                    </a>
-                </div>
-            </div>
-        </section>
+        </div>
     </main>
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Mi Diario de IA. Todos los derechos reservados.</p>
-            <p>Hecho con ❤️ y mucho ☕</p>
+            <div class="footer-content">
+                <p>&copy; 2025 Mi Diario de IA. Compartiendo conocimiento sobre inteligencia artificial.</p>
+                <div class="footer-links">
+                    <a href="https://github.com/dzafondynamizatic" target="_blank">GitHub</a>
+                    <a href="mailto:tu-email@ejemplo.com">Email</a>
+                    <a href="https://linkedin.com/in/tu-perfil" target="_blank">LinkedIn</a>
+                </div>
+            </div>
         </div>
     </footer>
 

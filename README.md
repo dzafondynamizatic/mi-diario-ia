@@ -1,16 +1,17 @@
 # Mi Diario de IA 🤖
 
-Un blog personal dedicado a documentar mi viaje explorando el fascinante mundo de la inteligencia artificial, machine learning y tecnologías emergentes.
+Un blog personal minimalista dedicado a documentar mi viaje explorando el fascinante mundo de la inteligencia artificial, machine learning y tecnologías emergentes.
 
 ## 🚀 Características
 
-- **Diseño Responsivo**: Optimizado para dispositivos móviles y escritorio
+- **Diseño Minimalista**: Enfocado completamente en el contenido de los artículos
+- **Colores Microsoft 365 Copilot**: Paleta inspirada en los colores oficiales de Copilot
 - **Búsqueda Inteligente**: Encuentra artículos por título, contenido o tags
-- **Filtros por Categorías**: Machine Learning, Deep Learning, NLP, Computer Vision, etc.
-- **Modal de Lectura**: Experiencia de lectura inmersiva
+- **Filtros por Categorías**: ML, DL, NLP, Computer Vision, Tools, Ética
+- **Modal de Lectura**: Experiencia de lectura inmersiva sin distracciones
 - **Artículos Relacionados**: Sugerencias basadas en tags similares
-- **Animaciones Suaves**: Transiciones y efectos visuales atractivos
-- **SEO Optimizado**: Meta tags y estructura semántica
+- **Responsive Design**: Optimizado para todos los dispositivos
+- **Navegación Simplificada**: Sin secciones innecesarias, directo a los artículos
 
 ## 🛠️ Tecnologías Utilizadas
 
@@ -87,21 +88,23 @@ Las variables CSS están definidas en `:root` para fácil personalización:
 
 ```css
 :root {
-    --primary-color: #6366f1;
-    --secondary-color: #f59e0b;
-    /* ... más variables */
+    --primary-color: #8b5fbf;
+    --secondary-color: #0078d4;
+    --accent-color: #00bcf2;
+    /* Colores inspirados en Microsoft 365 Copilot */
 }
 ```
 
 ### Tipografía
 El proyecto usa la fuente Inter de Google Fonts. Puedes cambiarla editando el enlace en el `<head>` de `index.html`.
 
-## 📱 Características Responsivas
+## 📱 Características del Diseño
 
+- **Minimalista**: Enfoque 100% en el contenido, sin distracciones
 - **Mobile First**: Diseñado primero para móviles
-- **Breakpoints**: Optimizado para tablets y escritorio
-- **Menú Hamburguesa**: Navegación móvil intuitiva
-- **Touch Friendly**: Botones y enlaces optimizados para touch
+- **Colores Copilot**: Paleta oficial de Microsoft 365 Copilot
+- **Navegación Simple**: Header limpio con enlaces directos
+- **Carga Rápida**: Sin elementos innecesarios que ralenticen la experiencia
 
 ## 🔧 Optimizaciones
 

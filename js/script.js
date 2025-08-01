@@ -76,7 +76,7 @@ function setupMobileMenu() {
     }
 }
 
-// Configurar smooth scrolling
+// Configurar smooth scrolling para los pocos enlaces que quedan
 function setupSmoothScrolling() {
     const links = document.querySelectorAll('a[href^="#"]');
     
@@ -85,15 +85,22 @@ function setupSmoothScrolling() {
             e.preventDefault();
             
             const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 70; // Ajuste para header fijo
-                
+            if (targetId === '#') {
+                // Scroll al inicio
                 window.scrollTo({
-                    top: offsetTop,
+                    top: 0,
                     behavior: 'smooth'
                 });
+            } else {
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    const offsetTop = targetSection.offsetTop - 70;
+                    
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
             }
         });
     });
