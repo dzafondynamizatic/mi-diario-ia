@@ -1,0 +1,39 @@
+{
+  "name": "mi-diario-ia",
+  "version": "1.0.0",
+  "description": "Blog personal sobre inteligencia artificial empresarial y Microsoft Dynamics 365 Business Central",
+  "main": "index.html",
+  "scripts": {
+    "generate": "node scripts/generate-articles-local.js",
+    "dev": "python -m http.server 8000",
+    "build": "npm run generate",
+    "serve": "npx serve .",
+    "validate": "node scripts/validate-articles.js",
+    "stats": "node scripts/generate-stats.js"
+  },
+  "keywords": [
+    "blog",
+    "ai",
+    "artificial-intelligence",
+    "business-central",
+    "dynamics-365",
+    "microsoft",
+    "github-pages"
+  ],
+  "author": "Tu Nombre",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dzafondynamizatic/mi-diario-ia.git"
+  },
+  "homepage": "https://dzafondynamizatic.github.io/mi-diario-ia/",
+  "devDependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "fs-extra": "^11.1.1",
+    "marked": "^9.1.0",
+    "date-fns": "^2.30.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

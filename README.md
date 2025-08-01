@@ -1,25 +1,98 @@
-# Mi Diario de IA 🤖
+# 🤖 Mi Diario de IA
 
-Un blog personal minimalista dedicado a documentar mis experiencias explorando herramientas de inteligencia artificial en el ámbito empresarial, especialmente con Microsoft Dynamics 365 Business Central y tecnologías relacionadas.
+> Blog personal sobre inteligencia artificial empresarial y Microsoft Dynamics 365 Business Central
 
-## 🚀 Características
+![Artículos](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/dzafondynamizatic/mi-diario-ia/main/badge.json&label=art%C3%ADculos&query=message&color=blue)
+![Build Status](https://img.shields.io/github/actions/workflow/status/dzafondynamizatic/mi-diario-ia/generate-articles.yml?branch=main)
+![Last Commit](https://img.shields.io/github/last-commit/dzafondynamizatic/mi-diario-ia)
 
-- **Diseño Minimalista**: Enfocado completamente en el contenido de los artículos
-- **Colores Microsoft 365 Copilot**: Paleta inspirada en los colores oficiales de Copilot
-- **Búsqueda Inteligente**: Encuentra artículos por título, contenido o tags
-- **Filtros por Categorías**: Business Central, Dynamics 365, IA, Demos, ERP
-- **Modal de Lectura**: Experiencia de lectura inmersiva sin distracciones
-- **Artículos Relacionados**: Sugerencias basadas en tags similares
-- **Responsive Design**: Optimizado para todos los dispositivos
-- **Navegación Simplificada**: Sin secciones innecesarias, directo a los artículos
-- **Lista Vertical**: Los artículos se muestran uno debajo del otro para mejor lectura
+## 🌟 Características
 
-## 🛠️ Tecnologías Utilizadas
+- ✨ **Generación automática**: Los artículos se generan automáticamente con GitHub Actions
+- 🎨 **Diseño moderno**: Colores de Microsoft 365 Copilot con diseño responsive
+- 🔍 **SEO optimizado**: Meta tags, OpenGraph, Twitter Cards y Schema.org
+- 📱 **Mobile-first**: Diseño adaptativo para todos los dispositivos
+- 🏷️ **Sistema de tags**: Filtrado inteligente por categorías
+- 📄 **Páginas individuales**: Cada artículo tiene su propia página
+- 🗺️ **Sitemap automático**: Generación automática para SEO
+- 📊 **Estadísticas**: Análisis detallado del contenido del blog
 
-- **HTML5**: Estructura semántica y accesible
-- **CSS3**: Diseño moderno con CSS Grid, Flexbox y animaciones
-- **JavaScript ES6+**: Funcionalidad interactiva y dinámica
-- **GitHub Pages**: Hosting gratuito y confiable
+## 🚀 Demo en Vivo
+
+👉 **[Ver Blog](https://dzafondynamizatic.github.io/mi-diario-ia/)**
+
+## 🛠️ Tecnologías
+
+- **Frontend**: HTML5, CSS3, JavaScript ES6+
+- **Deployment**: GitHub Pages
+- **CI/CD**: GitHub Actions
+- **Generación**: Node.js scripts
+- **SEO**: Schema.org, OpenGraph, Twitter Cards
+
+## 📝 Cómo Agregar Artículos
+
+### 1. Editar artículos localmente
+
+Modifica el archivo `js/articles-data.js` y agrega un nuevo artículo:
+
+```javascript
+{
+    id: 2, // ID único
+    title: "Tu Nuevo Artículo",
+    excerpt: "Breve descripción del artículo...",
+    content: `
+        <h2>Introducción</h2>
+        <p>Contenido del artículo en HTML...</p>
+    `,
+    image: "🚀",
+    date: "2025-08-15",
+    author: "Tu Nombre",
+    tags: ["ai", "business-central", "demo"],
+    readTime: "8 min"
+}
+```
+
+### 2. Generación automática (GitHub)
+
+Al hacer push de cambios en `js/articles-data.js`, GitHub Actions automáticamente:
+
+1. ✅ Valida la estructura de los artículos
+2. 🎨 Genera páginas HTML individuales
+3. 🗺️ Actualiza el sitemap.xml
+4. 📊 Regenera estadísticas
+5. 🚀 Despliega en GitHub Pages
+
+### 3. Generación local
+
+También puedes generar los artículos localmente:
+
+```bash
+# Instalar dependencias
+npm install
+
+# Generar artículos
+npm run generate
+
+# Validar artículos
+npm run validate
+
+# Generar estadísticas
+npm run stats
+
+# Servir localmente
+npm run serve
+```
+
+## 🔧 Scripts Disponibles
+
+| Script | Descripción |
+|--------|-------------|
+| `npm run generate` | Genera páginas individuales y sitemap |
+| `npm run validate` | Valida estructura y contenido de artículos |
+| `npm run stats` | Genera estadísticas detalladas |
+| `npm run dev` | Servidor de desarrollo (Python) |
+| `npm run serve` | Servidor de desarrollo (npx serve) |
+| `npm run build` | Build completo (generate + validate) |
 
 ## 📁 Estructura del Proyecto
 

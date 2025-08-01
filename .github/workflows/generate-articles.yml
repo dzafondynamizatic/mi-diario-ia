@@ -1,0 +1,652 @@
+name: 'Generar y Publicar Artículos del Blog'
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'js/articles-data.js'
+      - '.github/workflows/generate-articles.yml'
+  workflow_dispatch:
+    inputs:
+      force_regenerate:
+        description: 'Forzar regeneración completa'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  generate-articles:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+
+    steps:
+      - name: 🔄 Checkout código
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📥 Instalar dependencias
+        run: |
+          npm init -y
+          npm install --save-dev cheerio fs-extra marked date-fns
+
+      - name: 🤖 Generar artículos automáticamente
+        run: |
+          cat > generate-articles.js << 'EOF'
+          const fs = require('fs-extra');
+          const path = require('path');
+          const { marked } = require('marked');
+          
+          console.log('🚀 Iniciando generación de artículos...');
+          
+          // Leer datos de artículos
+          const articlesDataPath = './js/articles-data.js';
+          if (!fs.existsSync(articlesDataPath)) {
+            console.error('❌ No se encontró articles-data.js');
+            process.exit(1);
+          }
+          
+          // Cargar artículos
+          const articlesContent = fs.readFileSync(articlesDataPath, 'utf8');
+          eval(articlesContent); // Esto carga la variable articlesData
+          
+          console.log(`📄 Encontrados ${articlesData.length} artículos`);
+          
+          // Función para limpiar filename
+          function cleanFilename(title) {
+            return title
+              .toLowerCase()
+              .replace(/[^a-z0-9\s-]/g, '')
+              .replace(/\s+/g, '-')
+              .replace(/-+/g, '-')
+              .trim('-')
+              .substring(0, 50);
+          }
+          
+          // Crear directorio de artículos si no existe
+          const articlesDir = './articulos';
+          fs.ensureDirSync(articlesDir);
+          
+          // Generar página individual para cada artículo
+          articlesData.forEach(article => {
+            const filename = cleanFilename(article.title);
+            const articlePath = path.join(articlesDir, `${filename}.html`);
+            
+            const articleHtml = `<!DOCTYPE html>
+          <html lang="es">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>${article.title} | Mi Diario de IA</title>
+              <meta name="description" content="${article.excerpt}">
+              <meta name="keywords" content="${article.tags.join(', ')}">
+              
+              <!-- Open Graph / Facebook -->
+              <meta property="og:type" content="article">
+              <meta property="og:url" content="https://dzafondynamizatic.github.io/mi-diario-ia/articulos/${filename}.html">
+              <meta property="og:title" content="${article.title}">
+              <meta property="og:description" content="${article.excerpt}">
+              <meta property="og:image" content="https://dzafondynamizatic.github.io/mi-diario-ia/images/og-image.png">
+              
+              <!-- Twitter -->
+              <meta property="twitter:card" content="summary_large_image">
+              <meta property="twitter:url" content="https://dzafondynamizatic.github.io/mi-diario-ia/articulos/${filename}.html">
+              <meta property="twitter:title" content="${article.title}">
+              <meta property="twitter:description" content="${article.excerpt}">
+              <meta property="twitter:image" content="https://dzafondynamizatic.github.io/mi-diario-ia/images/og-image.png">
+              
+              <link rel="canonical" href="https://dzafondynamizatic.github.io/mi-diario-ia/articulos/${filename}.html">
+              <link rel="stylesheet" href="../css/styles.css">
+              <link rel="stylesheet" href="../css/additional-styles.css">
+              <link rel="stylesheet" href="../css/article.css">
+              <link rel="icon" type="image/png" href="../favicon.png">
+              
+              <!-- Google Fonts -->
+              <link rel="preconnect" href="https://fonts.googleapis.com">
+              <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+              <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+          </head>
+          <body>
+              <header class="blog-header">
+                  <div class="container">
+                      <div class="header-content">
+                          <div class="logo">
+                              <h1><a href="../index.html">Mi Diario de IA 🤖</a></h1>
+                              <p>Explorando el mundo de la inteligencia artificial empresarial</p>
+                          </div>
+                          
+                          <nav class="nav-menu">
+                              <a href="../index.html" class="nav-link">Inicio</a>
+                              <a href="../index.html#articles" class="nav-link">Artículos</a>
+                              <a href="#" class="nav-link">Sobre Mí</a>
+                          </nav>
+                      </div>
+                  </div>
+              </header>
+              
+              <main class="article-main">
+                  <div class="container">
+                      <!-- Breadcrumbs -->
+                      <nav class="breadcrumbs">
+                          <a href="../index.html">Inicio</a>
+                          <span>></span>
+                          <span>Artículos</span>
+                          <span>></span>
+                          <span>${article.title}</span>
+                      </nav>
+                      
+                      <!-- Artículo -->
+                      <article class="article-single">
+                          <header class="article-header">
+                              <div class="article-meta">
+                                  <span class="article-icon">${article.image}</span>
+                                  <span class="article-date">${new Date(article.date).toLocaleDateString('es-ES', { 
+                                    year: 'numeric', 
+                                    month: 'long', 
+                                    day: 'numeric' 
+                                  })}</span>
+                                  <span class="article-author">Por ${article.author}</span>
+                                  <span class="article-read-time">${article.readTime} de lectura</span>
+                              </div>
+                              
+                              <h1 class="article-title">${article.title}</h1>
+                              <p class="article-excerpt">${article.excerpt}</p>
+                              
+                              <div class="article-tags">
+                                  ${article.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                              </div>
+                          </header>
+                          
+                          <div class="article-content">
+                              ${article.content}
+                          </div>
+                          
+                          <footer class="article-footer">
+                              <div class="article-actions">
+                                  <button class="share-btn" onclick="shareArticle()">
+                                      📤 Compartir artículo
+                                  </button>
+                                  <a href="../index.html" class="back-btn">
+                                      ← Volver al blog
+                                  </a>
+                              </div>
+                          </footer>
+                      </article>
+                  </div>
+              </main>
+              
+              <footer class="blog-footer">
+                  <div class="container">
+                      <div class="footer-content">
+                          <div class="footer-section">
+                              <h3>Mi Diario de IA</h3>
+                              <p>Explorando el fascinante mundo de la inteligencia artificial empresarial, con enfoque en Microsoft Dynamics 365 y Business Central.</p>
+                          </div>
+                          
+                          <div class="footer-section">
+                              <h3>Enlaces</h3>
+                              <ul>
+                                  <li><a href="../index.html">Inicio</a></li>
+                                  <li><a href="../index.html#articles">Artículos</a></li>
+                                  <li><a href="#">Sobre Mí</a></li>
+                              </ul>
+                          </div>
+                          
+                          <div class="footer-section">
+                              <h3>Sígueme</h3>
+                              <div class="social-links">
+                                  <a href="https://github.com/dzafondynamizatic" target="_blank">GitHub</a>
+                                  <a href="#" target="_blank">LinkedIn</a>
+                                  <a href="#" target="_blank">Twitter</a>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <div class="footer-bottom">
+                          <p>&copy; 2025 Mi Diario de IA. Hecho con ❤️ y mucho ☕</p>
+                      </div>
+                  </div>
+              </footer>
+              
+              <script>
+                  function shareArticle() {
+                      if (navigator.share) {
+                          navigator.share({
+                              title: '${article.title}',
+                              text: '${article.excerpt}',
+                              url: window.location.href
+                          });
+                      } else {
+                          // Fallback para navegadores que no soportan Web Share API
+                          const url = window.location.href;
+                          navigator.clipboard.writeText(url).then(() => {
+                              alert('¡URL copiada al portapapeles!');
+                          });
+                      }
+                  }
+              </script>
+          </body>
+          </html>`;
+            
+            fs.writeFileSync(articlePath, articleHtml);
+            console.log(`✅ Generado: ${filename}.html`);
+          });
+          
+          // Generar sitemap
+          const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+          <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+              <url>
+                  <loc>https://dzafondynamizatic.github.io/mi-diario-ia/</loc>
+                  <lastmod>${new Date().toISOString()}</lastmod>
+                  <changefreq>weekly</changefreq>
+                  <priority>1.0</priority>
+              </url>
+              ${articlesData.map(article => {
+                const filename = cleanFilename(article.title);
+                return `<url>
+                  <loc>https://dzafondynamizatic.github.io/mi-diario-ia/articulos/${filename}.html</loc>
+                  <lastmod>${new Date(article.date).toISOString()}</lastmod>
+                  <changefreq>monthly</changefreq>
+                  <priority>0.8</priority>
+              </url>`;
+              }).join('')}
+          </urlset>`;
+          
+          fs.writeFileSync('./sitemap.xml', sitemapContent);
+          console.log('✅ Sitemap generado');
+          
+          // Actualizar index.html con nuevos artículos
+          console.log('📝 Actualizando index.html...');
+          
+          console.log('🎉 ¡Generación completada exitosamente!');
+          EOF
+          
+          node generate-articles.js
+
+      - name: 🎨 Crear CSS para artículos individuales
+        run: |
+          mkdir -p css
+          cat > css/article.css << 'EOF'
+          /* Estilos específicos para artículos individuales */
+          .article-main {
+              padding: 2rem 0;
+              min-height: calc(100vh - 200px);
+          }
+          
+          .breadcrumbs {
+              margin-bottom: 2rem;
+              font-size: 0.9rem;
+              color: var(--text-secondary);
+          }
+          
+          .breadcrumbs a {
+              color: var(--primary-color);
+              text-decoration: none;
+          }
+          
+          .breadcrumbs a:hover {
+              text-decoration: underline;
+          }
+          
+          .breadcrumbs span {
+              margin: 0 0.5rem;
+          }
+          
+          .article-single {
+              max-width: 800px;
+              margin: 0 auto;
+              background: var(--background-primary);
+              border-radius: 16px;
+              box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+              overflow: hidden;
+          }
+          
+          .article-header {
+              padding: 3rem 3rem 2rem;
+              background: linear-gradient(135deg, 
+                  rgba(139, 95, 191, 0.05) 0%, 
+                  rgba(0, 120, 212, 0.05) 100%);
+              border-bottom: 1px solid var(--border-color);
+          }
+          
+          .article-meta {
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+              margin-bottom: 1.5rem;
+              font-size: 0.9rem;
+              color: var(--text-secondary);
+              flex-wrap: wrap;
+          }
+          
+          .article-icon {
+              font-size: 1.5rem;
+          }
+          
+          .article-title {
+              font-size: 2.5rem;
+              font-weight: 700;
+              line-height: 1.2;
+              margin-bottom: 1rem;
+              color: var(--text-primary);
+          }
+          
+          .article-excerpt {
+              font-size: 1.2rem;
+              color: var(--text-secondary);
+              line-height: 1.6;
+              margin-bottom: 2rem;
+          }
+          
+          .article-tags {
+              display: flex;
+              flex-wrap: wrap;
+              gap: 0.5rem;
+          }
+          
+          .article-tags .tag {
+              background: var(--primary-color);
+              color: white;
+              padding: 0.25rem 0.75rem;
+              border-radius: 20px;
+              font-size: 0.8rem;
+              font-weight: 500;
+          }
+          
+          .article-content {
+              padding: 3rem;
+              line-height: 1.8;
+          }
+          
+          .article-content h2 {
+              font-size: 2rem;
+              font-weight: 600;
+              margin: 2.5rem 0 1.5rem;
+              color: var(--primary-color);
+              position: relative;
+          }
+          
+          .article-content h2::before {
+              content: '';
+              position: absolute;
+              bottom: -0.5rem;
+              left: 0;
+              width: 50px;
+              height: 3px;
+              background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+              border-radius: 2px;
+          }
+          
+          .article-content h3 {
+              font-size: 1.5rem;
+              font-weight: 600;
+              margin: 2rem 0 1rem;
+              color: var(--secondary-color);
+          }
+          
+          .article-content p {
+              margin-bottom: 1.5rem;
+              color: var(--text-primary);
+          }
+          
+          .article-content ul, .article-content ol {
+              margin: 1.5rem 0;
+              padding-left: 2rem;
+          }
+          
+          .article-content li {
+              margin-bottom: 0.75rem;
+              color: var(--text-primary);
+          }
+          
+          .article-content strong {
+              color: var(--primary-color);
+              font-weight: 600;
+          }
+          
+          .article-content code {
+              background: var(--background-secondary);
+              padding: 0.2rem 0.4rem;
+              border-radius: 4px;
+              font-family: 'Courier New', monospace;
+              font-size: 0.9em;
+              color: var(--secondary-color);
+          }
+          
+          .article-content pre {
+              background: var(--background-secondary);
+              padding: 1.5rem;
+              border-radius: 8px;
+              overflow-x: auto;
+              margin: 1.5rem 0;
+              border-left: 4px solid var(--primary-color);
+          }
+          
+          .article-content blockquote {
+              border-left: 4px solid var(--accent-color);
+              margin: 1.5rem 0;
+              padding: 1rem 1.5rem;
+              background: rgba(0, 188, 242, 0.05);
+              border-radius: 0 8px 8px 0;
+          }
+          
+          .article-footer {
+              padding: 2rem 3rem 3rem;
+              border-top: 1px solid var(--border-color);
+              background: var(--background-secondary);
+          }
+          
+          .article-actions {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              gap: 1rem;
+              flex-wrap: wrap;
+          }
+          
+          .share-btn, .back-btn {
+              padding: 0.75rem 1.5rem;
+              border-radius: 8px;
+              text-decoration: none;
+              font-weight: 500;
+              transition: all 0.3s ease;
+              display: inline-flex;
+              align-items: center;
+              gap: 0.5rem;
+          }
+          
+          .share-btn {
+              background: var(--primary-color);
+              color: white;
+              border: none;
+              cursor: pointer;
+          }
+          
+          .share-btn:hover {
+              background: var(--secondary-color);
+              transform: translateY(-2px);
+          }
+          
+          .back-btn {
+              background: var(--background-primary);
+              color: var(--text-primary);
+              border: 2px solid var(--border-color);
+          }
+          
+          .back-btn:hover {
+              border-color: var(--primary-color);
+              color: var(--primary-color);
+              transform: translateY(-2px);
+          }
+          
+          /* Responsive */
+          @media (max-width: 768px) {
+              .article-header,
+              .article-content,
+              .article-footer {
+                  padding: 2rem 1.5rem;
+              }
+              
+              .article-title {
+                  font-size: 2rem;
+              }
+              
+              .article-meta {
+                  font-size: 0.8rem;
+                  gap: 0.5rem;
+              }
+              
+              .article-actions {
+                  flex-direction: column;
+                  align-items: stretch;
+              }
+              
+              .share-btn, .back-btn {
+                  text-align: center;
+                  justify-content: center;
+              }
+          }
+          EOF
+
+      - name: 🖼️ Crear imagen OG por defecto
+        run: |
+          mkdir -p images
+          # Crear una imagen SVG simple para OG
+          cat > images/og-image.svg << 'EOF'
+          <svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#8b5fbf;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#0078d4;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <rect width="1200" height="630" fill="url(#bg)"/>
+            <text x="600" y="280" font-family="Arial, sans-serif" font-size="72" font-weight="bold" text-anchor="middle" fill="white">Mi Diario de IA</text>
+            <text x="600" y="350" font-family="Arial, sans-serif" font-size="36" text-anchor="middle" fill="rgba(255,255,255,0.9)">Explorando Business Central e IA</text>
+            <text x="600" y="500" font-family="Arial, sans-serif" font-size="120" text-anchor="middle" fill="rgba(255,255,255,0.8)">🤖</text>
+          </svg>
+          EOF
+
+      - name: 📊 Generar estadísticas del blog
+        run: |
+          cat > generate-stats.js << 'EOF'
+          const fs = require('fs-extra');
+          
+          // Cargar artículos
+          const articlesContent = fs.readFileSync('./js/articles-data.js', 'utf8');
+          eval(articlesContent);
+          
+          const stats = {
+            totalArticles: articlesData.length,
+            totalTags: [...new Set(articlesData.flatMap(a => a.tags))].length,
+            averageReadTime: Math.round(
+              articlesData.reduce((sum, a) => sum + parseInt(a.readTime), 0) / articlesData.length
+            ),
+            lastUpdated: new Date().toISOString(),
+            tagDistribution: {}
+          };
+          
+          // Contar distribución de tags
+          articlesData.forEach(article => {
+            article.tags.forEach(tag => {
+              stats.tagDistribution[tag] = (stats.tagDistribution[tag] || 0) + 1;
+            });
+          });
+          
+          fs.writeJsonSync('./stats.json', stats, { spaces: 2 });
+          console.log('📊 Estadísticas generadas:', stats);
+          EOF
+          
+          node generate-stats.js
+
+      - name: 🔍 Validar archivos generados
+        run: |
+          echo "🔍 Validando archivos generados..."
+          
+          # Verificar que se generaron los artículos
+          if [ -d "articulos" ]; then
+            ARTICLE_COUNT=$(find articulos -name "*.html" | wc -l)
+            echo "✅ Se generaron $ARTICLE_COUNT páginas de artículos"
+          else
+            echo "❌ No se generó el directorio de artículos"
+            exit 1
+          fi
+          
+          # Verificar sitemap
+          if [ -f "sitemap.xml" ]; then
+            echo "✅ Sitemap generado correctamente"
+          else
+            echo "❌ No se generó el sitemap"
+            exit 1
+          fi
+          
+          # Verificar CSS
+          if [ -f "css/article.css" ]; then
+            echo "✅ CSS de artículos generado"
+          else
+            echo "❌ No se generó el CSS de artículos"
+            exit 1
+          fi
+          
+          # Verificar estadísticas
+          if [ -f "stats.json" ]; then
+            echo "✅ Estadísticas generadas"
+          else
+            echo "❌ No se generaron las estadísticas"
+            exit 1
+          fi
+
+      - name: 🚀 Commit y push de archivos generados
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          # Añadir archivos generados
+          git add articulos/
+          git add sitemap.xml
+          git add css/article.css
+          git add images/
+          git add stats.json
+          
+          # Verificar si hay cambios
+          if git diff --staged --quiet; then
+            echo "ℹ️ No hay cambios para commitear"
+          else
+            git commit -m "🤖 Auto-generar artículos y sitemap [skip ci]
+
+            - Generadas páginas individuales para todos los artículos
+            - Actualizado sitemap.xml
+            - Creado CSS para artículos individuales
+            - Generadas estadísticas del blog
+            
+            Artículos generados: $(find articulos -name "*.html" 2>/dev/null | wc -l)
+            Fecha: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+            
+            git push
+            echo "✅ Cambios pusheados exitosamente"
+          fi
+
+      - name: 🎉 Resumen de generación
+        run: |
+          echo "
+          🎉 ¡Generación completada exitosamente!
+          
+          📄 Artículos generados: $(find articulos -name "*.html" 2>/dev/null | wc -l)
+          🗺️ Sitemap: ✅
+          🎨 CSS: ✅
+          📊 Estadísticas: ✅
+          🖼️ Imagen OG: ✅
+          
+          🌐 Tu blog está listo en: https://dzafondynamizatic.github.io/mi-diario-ia/
+          "
