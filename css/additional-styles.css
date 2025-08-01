@@ -402,3 +402,44 @@
 .breadcrumbs a:hover {
     text-decoration: underline;
 }
+
+/* Estilos específicos para el diseño de lista vertical */
+.article-card {
+    border-left: 4px solid transparent;
+}
+
+.article-card:hover {
+    border-left-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(139, 95, 191, 0.02) 0%, rgba(0, 120, 212, 0.02) 100%);
+}
+
+/* Mejora en la meta información para lista */
+.article-meta span {
+    background: var(--background-secondary);
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    border: 1px solid var(--border-color);
+}
+
+/* Separador visual entre artículos */
+.article-card:not(:last-child) {
+    position: relative;
+}
+
+.article-card:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 120px;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border-color) 0%, transparent 100%);
+}
+
+/* Responsive para separadores */
+@media (max-width: 768px) {
+    .article-card:not(:last-child)::after {
+        left: 0;
+    }
+}
